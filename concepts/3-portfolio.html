@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Idizin Portfolio Grid</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: work-first. A short statement, then a filterable project index that fills the page like a drawing register. */
+:root{
+  --blue:#1B4D9B;        /* Idizin signature blue (stand-in until the exact hex is confirmed) */
+  --bg:#FAFBFC; --ink:#111823; --mute:#667183; --line:#DFE4EB; --tile:#EDF1F6;
+  --sans:"Geist","Helvetica Neue",Arial,sans-serif; --mono:"Geist Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55}
+.in{max-width:1440px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media(min-width:800px){.in{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}}
+a{color:inherit}
+.tag{background:var(--ink);color:var(--bg);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:8px 16px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+header .in{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:16px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:20px;letter-spacing:-.02em}
+.mark{width:26px;height:26px;background:var(--blue);display:grid;place-items:center;color:#fff;font-size:15px;font-weight:700}
+nav{display:flex;gap:22px;font-size:14px;flex-wrap:wrap;align-items:center}
+nav a{text-decoration:none;color:var(--mute)} nav a:hover,nav a:focus-visible{color:var(--ink)}
+nav .btn{background:var(--blue);color:#fff;padding:8px 14px}
+.intro .in{display:grid;gap:24px;padding-block:56px 40px}
+@media(min-width:900px){.intro .in{grid-template-columns:2fr 1fr;align-items:end}}
+h1{font-size:clamp(34px,4.6vw,64px);line-height:1.02;letter-spacing:-.035em;font-weight:600;margin:0;max-width:18ch;text-wrap:balance}
+h1 span{color:var(--blue)}
+.intro p{margin:0;color:var(--mute);max-width:40ch}
+.meta{font-family:var(--mono);font-size:12px;color:var(--mute);letter-spacing:.02em}
+.filters{display:flex;gap:8px;flex-wrap:wrap;padding-block:0 20px}
+.filters button{font:500 13px var(--sans);border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:8px 14px;cursor:pointer}
+.filters button:hover{border-color:var(--blue)}
+.filters button[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.filters button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:28px 20px;padding-block:8px 72px}
+.card{text-decoration:none;display:block;min-width:0}
+.card .art{aspect-ratio:4/3;max-width:100%;background:var(--tile);overflow:hidden;position:relative}
+.card svg{width:100%;height:100%;display:block;transition:transform .5s ease}
+.card:hover svg{transform:scale(1.05)}
+.card .no{position:absolute;top:10px;left:10px;font-family:var(--mono);font-size:11px;background:var(--bg);padding:3px 7px}
+.card h3{font-size:16px;font-weight:600;margin:12px 0 2px;letter-spacing:-.01em}
+.card .row{display:flex;justify-content:space-between;gap:12px}
+.card:hover h3{color:var(--blue)}
+.svc{border-top:1px solid var(--line);background:var(--ink);color:#fff}
+.svc .in{display:grid;gap:0;padding-block:0}
+@media(min-width:800px){.svc .in{grid-template-columns:repeat(4,1fr)}}
+.svc div.s{padding:36px 24px 40px 0;border-bottom:1px solid #2A3444;min-width:0}
+@media(min-width:800px){.svc div.s{border-bottom:0;border-right:1px solid #2A3444;padding-left:24px}.svc div.s:first-child{padding-left:0}.svc div.s:last-child{border-right:0}}
+.svc .meta{color:#8FA3C2}
+.svc h3{font-size:22px;margin:8px 0;font-weight:600}
+.svc p{margin:0;color:#B4BFCE;font-size:14px}
+.cta{background:var(--blue);color:#fff}
+.cta .in{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center;padding-block:48px}
+.cta h2{margin:0;font-size:clamp(26px,3vw,40px);letter-spacing:-.03em;font-weight:600}
+.cta .tel{font-family:var(--mono);font-size:clamp(20px,2.4vw,28px);user-select:all}
+footer .in{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:20px}
+.empty{grid-column:1/-1;color:var(--mute)}
+</style>
+</head>
+<body>
+
+<div class="tag">Homepage concept 3 of 5 · Portfolio grid · drawings and project names are placeholders</div>
+<header><div class="in">
+  <a class="logo" href="#top"><span class="mark">i</span>idizin</a>
+  <nav aria-label="Main"><a href="#work">Projects</a><a href="#services">Services</a><a href="#contact">About</a><a class="btn" href="#contact">Book a meeting</a></nav>
+</div></header>
+<main id="top">
+<section class="intro"><div class="in">
+  <h1>Building design and approvals for <span>Sydney homes and developments.</span></h1>
+  <div><p>From a backyard granny flat to a residential flat building, we design it, document it and take it through approval.</p><p class="meta" id="count" style="margin-top:14px"></p></div>
+</div></section>
+<section id="work"><div class="in">
+  <div class="filters" role="group" aria-label="Filter projects" id="filters"></div>
+  <div class="grid" id="grid"></div>
+</div></section>
+<section class="svc" id="services"><div class="in">
+  <div class="s"><span class="meta">Step 1</span><h3>Consult</h3><p>We meet to talk through your ideas, your site and your budget.</p></div>
+  <div class="s"><span class="meta">Step 2</span><h3>Design</h3><p>Sketch plans, then full working drawings with materials and finishes.</p></div>
+  <div class="s"><span class="meta">Step 3</span><h3>Approve</h3><p>DA, CC and CDC packages, with consultants coordinated for you.</p></div>
+  <div class="s"><span class="meta">Step 4</span><h3>Construct</h3><p>We connect you with builders and project managers we trust.</p></div>
+</div></section>
+<section class="cta" id="contact"><div class="in">
+  <h2>Have a site in mind? Let's look at it together.</h2>
+  <span class="tel">(02) 8677 9837</span>
+</div></section>
+</main>
+<footer><div class="in meta"><span>© idizin Sydney Pty Ltd</span><span>Sydney NSW</span></div></footer>
+<script>
+window.IDZ_PAL={a:{sky1:'#EDF1F6',wall:'#FFFFFF',wall2:'#D9E0EA',roof:'#111823',glass:'#1B4D9B',mull:'#EDF1F6',line:'#111823',tree:'#A9B6C7',trunk:'#667183',ground:'#E3E8EF',batten:'#667183'},
+b:{sky1:'#1B4D9B',sky2:'#3D6DB8',wall:'#FFFFFF',wall2:'#C9D6EA',roof:'#111823',glass:'#111823',mull:'#C9D6EA',line:'#111823',tree:'#0F2E61',trunk:'#0F2E61',ground:'#0F2E61',batten:'#667183'}};
+const P=[["Bexley Courtyard House","Dwellings","2024"],["Earlwood Pair","Dual occupancies","2024"],["Rear-lot Studio","Granny flats","2023"],["Kogarah Terraces","Multi-dwellings","2023"],["Hurstville Apartments","Residential flat buildings","2022"],["Corner Shopfront","Commercial","2023"],["Lane Cove House","Dwellings","2022"],["Garden Granny Flat","Granny flats","2024"],["Riverwood Duplex","Dual occupancies","2022"],["Kitchen and Living","Interior visualisations","2024"],["Townhouse Row","Multi-dwellings","2021"],["Office Fit-out","Commercial","2021"]];
+const cats=["All",...new Set(P.map(p=>p[1]))];const f=document.getElementById('filters'),g=document.getElementById('grid'),cnt=document.getElementById('count');
+function render(c){g.innerHTML='';const list=P.map((p,i)=>[...p,i]).filter(p=>c==='All'||p[1]===c);
+  list.forEach(p=>{const a=document.createElement('a');a.className='card';a.href='#work';
+    a.innerHTML=`<div class="art" data-bld='{"seed":${p[3]*13+3},"pal":"${p[3]%5===2?'b':'a'}"}'><span class="no">${String(p[3]+1).padStart(2,'0')}</span></div><h3>${p[0]}</h3><div class="row meta"><span>${p[1]}</span><span>${p[2]}</span></div>`;g.appendChild(a);
+    const art=a.querySelector('.art');art.insertAdjacentHTML('afterbegin',idzBuilding(p[3]*13+3,IDZ_PAL[p[3]%5===2?'b':'a']))});
+  cnt.textContent=`${list.length} sample projects · ${c==='All'?'all categories':c.toLowerCase()}`;
+  f.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.textContent===c))}
+cats.forEach(c=>{const b=document.createElement('button');b.type='button';b.textContent=c;b.onclick=()=>render(c);f.appendChild(b)});
+document.addEventListener('DOMContentLoaded',()=>render('All'));
+</script>
+<script>
+/* Procedural building elevations: stand-ins until real project photos arrive. */
+function idzRng(seed){let s=seed>>>0||1;return()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296}}
+function idzBuilding(seed,c,opt){
+  opt=opt||{};const W=800,H=opt.h||520,G=H-70,r=idzRng(seed),R=(a,b)=>a+r()*(b-a);
+  const o=[];const line=c.line||'none',lw=opt.lw||1.5;
+  const sw=line==='none'?'':` stroke="${line}" stroke-width="${lw}"`;
+  if(c.sky1){o.push(`<defs><linearGradient id="sk${seed}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c.sky1}"/><stop offset="1" stop-color="${c.sky2||c.sky1}"/></linearGradient></defs><rect width="${W}" height="${H}" fill="url(#sk${seed})"/>`)}
+  if(c.sun&&!opt.nosun)o.push(`<circle cx="${R(520,700)}" cy="${R(70,130)}" r="${R(28,46)}" fill="${c.sun}"/>`);
+  const tree=(x,s)=>{const t=c.tree||c.line;o.push(`<line x1="${x}" y1="${G}" x2="${x}" y2="${G-s*1.1}" stroke="${c.trunk||t}" stroke-width="3"/>`);
+    for(let i=0;i<5;i++)o.push(`<circle cx="${x+R(-s*.35,s*.35)}" cy="${G-s*1.15+R(-s*.25,s*.2)}" r="${R(s*.22,s*.36)}" fill="${c.tree||'none'}"${c.tree?'':sw} opacity="${c.tree?.9:1}"/>`)};
+  if(!opt.notrees)tree(R(40,110),R(90,130));
+  const n=opt.masses||(2+Math.floor(r()*2));let x=R(120,170);
+  for(let m=0;m<n;m++){
+    const w=R(150,240),h=R(110,190)+(m===1?R(30,80):0),y=G-h,top=m%2===0;
+    const fill=m%2?c.wall2||c.wall:c.wall;
+    o.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${fill}"${sw}/>`);
+    if(r()<.5){const lip=R(10,26);o.push(`<polygon points="${x-lip},${y} ${x+w+lip},${y-R(0,24)} ${x+w+lip},${y-R(0,6)-8} ${x-lip},${y-8}" fill="${c.roof||fill}"${sw}/>`)}
+    else o.push(`<rect x="${x-14}" y="${y-10}" width="${w+28}" height="10" fill="${c.roof||fill}"${sw}/>`);
+    const mode=r();
+    if(mode<.4){const gx=x+w*R(.12,.2),gw=w*R(.5,.7),gh=h*R(.45,.7);
+      o.push(`<rect x="${gx}" y="${G-gh}" width="${gw}" height="${gh}" fill="${c.glass}"${sw}/>`);
+      for(let k=1;k<4;k++)o.push(`<line x1="${gx+gw*k/4}" y1="${G-gh}" x2="${gx+gw*k/4}" y2="${G}" stroke="${c.mull||c.line||fill}" stroke-width="1.5"/>`);
+      if(h>150){const uy=y+16;o.push(`<rect x="${x+w*.18}" y="${uy}" width="${w*.64}" height="${h-gh-34}" fill="${c.glass}"${sw}/>`)}}
+    else if(mode<.7){const cols=Math.max(2,Math.floor(w/52)),rows=Math.max(1,Math.floor((h-30)/62));
+      for(let i=0;i<cols;i++)for(let j=0;j<rows;j++)o.push(`<rect x="${x+14+i*((w-28)/cols)+6}" y="${y+20+j*((h-34)/rows)}" width="${(w-28)/cols-12}" height="${(h-34)/rows-16}" fill="${c.glass}"${sw}/>`)}
+    else{for(let i=x+8;i<x+w-4;i+=9)o.push(`<line x1="${i}" y1="${y+6}" x2="${i}" y2="${G}" stroke="${c.batten||c.line||'#0002'}" stroke-width="1.2" opacity=".55"/>`);
+      o.push(`<rect x="${x+w*.55}" y="${y+h*.2}" width="${w*.3}" height="${h*.5}" fill="${c.glass}"${sw}/>`)}
+    if(c.accent&&m===n-1&&!opt.noaccent)o.push(`<rect x="${x+w*.06}" y="${G-h*.42}" width="${w*.12}" height="${h*.42}" fill="${c.accent}"/>`);
+    x+=w-R(10,40);
+  }
+  if(!opt.notrees)tree(Math.min(x+R(40,70),760),R(70,110));
+  o.push(`<rect x="0" y="${G}" width="${W}" height="${H-G}" fill="${c.ground||'none'}"/>`);
+  o.push(`<line x1="0" y1="${G}" x2="${W}" y2="${G}" stroke="${c.groundline||c.line||'#0003'}" stroke-width="${lw+.5}"/>`);
+  if(opt.dims){o.push(`<g fill="${c.line}" font-family="ui-monospace,monospace" font-size="11"><text x="20" y="${G+22}">FFL RL 34.200</text><text x="${W-150}" y="${G+22}">NORTH ELEVATION 1:100</text></g>`)}
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrative building elevation">${o.join('')}</svg>`;
+}
+document.querySelectorAll('[data-bld]').forEach(el=>{const p=JSON.parse(el.dataset.bld);el.innerHTML=idzBuilding(p.seed,window.IDZ_PAL[p.pal||'a'],p.opt)});
+</script>
+
+</body>
+</html>

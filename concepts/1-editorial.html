@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Idizin Editorial</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>
+/* Layout: an asymmetric editorial spread. Wide margins, a narrow text column against a large drawing, hairline rules only where sections change. */
+:root{
+  --blue:#1B4D9B;        /* Idizin signature blue (stand-in until the exact hex is confirmed) */
+  --paper:#F4F6F9; --ink:#141B26; --muted:#5D6878; --rule:#D3D9E2; --wash:#E6ECF4;
+  --display:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --body:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media(min-width:800px){.wrap{padding-left:max(48px,env(safe-area-inset-left,0px));padding-right:max(48px,env(safe-area-inset-right,0px))}}
+a{color:inherit}
+.tag{background:var(--ink);color:var(--paper);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:8px 16px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:28px;flex-wrap:wrap}
+.logo{font-family:var(--display);font-size:34px;line-height:1;color:var(--blue);text-decoration:none;letter-spacing:-.01em}
+.logo small{font-family:var(--body);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-left:10px}
+nav{display:flex;gap:28px;flex-wrap:wrap;font-size:14px}
+nav a{text-decoration:none;color:var(--muted)} nav a:hover,nav a:focus-visible{color:var(--blue)}
+nav .call{color:var(--blue);font-weight:600}
+.hero .wrap{display:grid;gap:40px;padding-block:40px 72px}
+@media(min-width:900px){.hero .wrap{grid-template-columns:5fr 7fr;align-items:end}}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);font-weight:600}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(46px,7vw,96px);line-height:.98;letter-spacing:-.02em;margin:18px 0 26px;text-wrap:balance}
+h1 em{color:var(--blue)}
+.lede{max-width:34ch;color:var(--muted);font-size:18px;margin:0 0 32px}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 22px;border:1px solid var(--blue);text-decoration:none;font-weight:600;font-size:14px;letter-spacing:.02em}
+.btn.solid{background:var(--blue);color:#fff}
+.btn:hover,.btn:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+figure{margin:0}
+.plate{background:var(--wash);aspect-ratio:8/5.6;max-width:100%;overflow:hidden}
+.plate svg{width:100%;height:100%;display:block}
+figcaption{display:flex;justify-content:space-between;gap:16px;font-size:12px;color:var(--muted);padding-top:10px;letter-spacing:.04em}
+section{border-top:1px solid var(--rule)}
+.sec{display:grid;gap:32px;padding-block:72px}
+@media(min-width:900px){.sec{grid-template-columns:3fr 9fr}}
+h2{font-family:var(--display);font-weight:400;font-size:clamp(32px,4vw,48px);line-height:1.05;margin:0;text-wrap:balance}
+.steps{display:grid;gap:36px 40px;list-style:none;margin:0;padding:0;counter-reset:s}
+@media(min-width:640px){.steps{grid-template-columns:1fr 1fr}}
+.steps li{counter-increment:s;min-width:0}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--display);font-style:italic;color:var(--blue);font-size:22px;display:block;margin-bottom:6px}
+.steps h3{font-size:18px;margin:0 0 6px;font-weight:600}
+.steps p{margin:0;color:var(--muted);max-width:42ch}
+.work{display:grid;gap:40px}
+@media(min-width:760px){.work{grid-template-columns:7fr 5fr}.work figure:nth-child(2){margin-top:120px}}
+.work .plate{aspect-ratio:4/3}
+.work h3{font-family:var(--display);font-weight:400;font-size:26px;margin:14px 0 2px}
+.work p{margin:0;color:var(--muted);font-size:14px}
+.types{display:flex;flex-wrap:wrap;gap:10px 28px;list-style:none;padding:0;margin:0;font-family:var(--display);font-size:clamp(24px,3vw,34px);line-height:1.3}
+.types li:not(:last-child)::after{content:"/";color:var(--blue);margin-left:28px}
+.approvals{display:grid;gap:20px;margin-top:40px}
+@media(min-width:640px){.approvals{grid-template-columns:repeat(3,1fr)}}
+.approvals div{border-top:2px solid var(--blue);padding-top:14px}
+.approvals b{display:block;font-size:13px;letter-spacing:.14em;color:var(--blue)}
+.approvals span{color:var(--muted);font-size:14px}
+.cta{background:var(--blue);color:#fff;border:0}
+.cta .wrap{padding-block:88px;display:grid;gap:24px}
+@media(min-width:900px){.cta .wrap{grid-template-columns:7fr 5fr;align-items:end}}
+.cta h2{font-size:clamp(38px,5vw,68px)}
+.cta .phone{font-family:var(--display);font-size:clamp(34px,4vw,52px);user-select:all}
+.cta p{margin:0;opacity:.8}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;padding-block:28px;font-size:13px;color:var(--muted)}
+@media(prefers-reduced-motion:no-preference){.hero .plate svg{animation:rise 1.2s ease-out both}@keyframes rise{from{transform:scale(1.04)}to{transform:none}}}
+</style>
+</head>
+<body>
+
+<div class="tag">Homepage concept 1 of 5 · Editorial · drawings and project names are placeholders</div>
+<header><div class="wrap">
+  <a class="logo" href="#top">idizin<small>Sydney</small></a>
+  <nav aria-label="Main"><a href="#process">Services</a><a href="#work">Projects</a><a href="#about">About</a><a class="call" href="#contact">(02) 8677 9837</a></nav>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+  <div>
+    <div class="eyebrow">Building design &amp; approvals · Sydney</div>
+    <h1>Considered homes, <em>approved</em> and ready to build.</h1>
+    <p class="lede">We design granny flats, homes, duplexes and apartment buildings, then take them through council so you can get on with building.</p>
+    <div class="btns"><a class="btn solid" href="#contact">Book a consultation</a><a class="btn" href="#work">See our work</a></div>
+  </div>
+  <figure>
+    <div class="plate" data-bld='{"seed":7,"pal":"a","opt":{"h":560}}'></div>
+    <figcaption><span>Dual occupancy · Inner West</span><span>Sketch elevation</span></figcaption>
+  </figure>
+</div></div>
+
+<section id="process"><div class="wrap sec">
+  <h2>From first sketch to the builder's hands.</h2>
+  <ol class="steps">
+    <li><h3>Consult</h3><p>We sit down with you to hear what you want to build, what the site allows, and what you want to spend.</p></li>
+    <li><h3>Design</h3><p>Sketch plans first, then detailed architectural drawings: plans, elevations, sections, materials and landscaping.</p></li>
+    <li><h3>Approve</h3><p>We prepare the complete package for council or a private certifier and coordinate engineers and surveyors.</p></li>
+    <li><h3>Construct</h3><p>We work with trusted builders and project managers to get you competitive prices and a smooth build.</p></li>
+  </ol>
+</div></section>
+
+<section id="work"><div class="wrap sec">
+  <h2>Selected work</h2>
+  <div class="work">
+    <figure><div class="plate" data-bld='{"seed":21,"pal":"a"}'></div><h3>Courtyard House</h3><p>New dwelling · Placeholder project</p></figure>
+    <figure><div class="plate" data-bld='{"seed":44,"pal":"a","opt":{"masses":2}}'></div><h3>Garden Studio</h3><p>Granny flat · Placeholder project</p></figure>
+  </div>
+</div></section>
+
+<section id="about"><div class="wrap sec">
+  <h2>What we design</h2>
+  <div>
+    <ul class="types"><li>Granny flats</li><li>Dwellings</li><li>Dual occupancies</li><li>Multi-dwellings</li><li>Residential flat buildings</li><li>Commercial</li><li>Interior visualisations</li></ul>
+    <div class="approvals">
+      <div><b>DA</b><span>Development Applications</span></div>
+      <div><b>CC</b><span>Construction Certificates</span></div>
+      <div><b>CDC</b><span>Complying Development</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="cta" id="contact"><div class="wrap">
+  <h2>Tell us what you plan to build. We'll take care of the details.</h2>
+  <div><div class="phone">(02) 8677 9837</div><p>Call to book a meeting, or send us your site address and a rough brief.</p></div>
+</div></section>
+</main>
+<footer><div class="wrap"><span>© idizin Sydney Pty Ltd</span><span>Building design · Development approvals · Sydney NSW</span></div></footer>
+<script>window.IDZ_PAL={a:{sky1:'#E6ECF4',wall:'#FFFFFF',wall2:'#DCE3EC',roof:'#141B26',glass:'#1B4D9B',mull:'#E6ECF4',line:'#141B26',tree:'#9AA9BC',trunk:'#5D6878',ground:'#E6ECF4',batten:'#5D6878'}}</script>
+<script>
+/* Procedural building elevations: stand-ins until real project photos arrive. */
+function idzRng(seed){let s=seed>>>0||1;return()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296}}
+function idzBuilding(seed,c,opt){
+  opt=opt||{};const W=800,H=opt.h||520,G=H-70,r=idzRng(seed),R=(a,b)=>a+r()*(b-a);
+  const o=[];const line=c.line||'none',lw=opt.lw||1.5;
+  const sw=line==='none'?'':` stroke="${line}" stroke-width="${lw}"`;
+  if(c.sky1){o.push(`<defs><linearGradient id="sk${seed}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c.sky1}"/><stop offset="1" stop-color="${c.sky2||c.sky1}"/></linearGradient></defs><rect width="${W}" height="${H}" fill="url(#sk${seed})"/>`)}
+  if(c.sun&&!opt.nosun)o.push(`<circle cx="${R(520,700)}" cy="${R(70,130)}" r="${R(28,46)}" fill="${c.sun}"/>`);
+  const tree=(x,s)=>{const t=c.tree||c.line;o.push(`<line x1="${x}" y1="${G}" x2="${x}" y2="${G-s*1.1}" stroke="${c.trunk||t}" stroke-width="3"/>`);
+    for(let i=0;i<5;i++)o.push(`<circle cx="${x+R(-s*.35,s*.35)}" cy="${G-s*1.15+R(-s*.25,s*.2)}" r="${R(s*.22,s*.36)}" fill="${c.tree||'none'}"${c.tree?'':sw} opacity="${c.tree?.9:1}"/>`)};
+  if(!opt.notrees)tree(R(40,110),R(90,130));
+  const n=opt.masses||(2+Math.floor(r()*2));let x=R(120,170);
+  for(let m=0;m<n;m++){
+    const w=R(150,240),h=R(110,190)+(m===1?R(30,80):0),y=G-h,top=m%2===0;
+    const fill=m%2?c.wall2||c.wall:c.wall;
+    o.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${fill}"${sw}/>`);
+    if(r()<.5){const lip=R(10,26);o.push(`<polygon points="${x-lip},${y} ${x+w+lip},${y-R(0,24)} ${x+w+lip},${y-R(0,6)-8} ${x-lip},${y-8}" fill="${c.roof||fill}"${sw}/>`)}
+    else o.push(`<rect x="${x-14}" y="${y-10}" width="${w+28}" height="10" fill="${c.roof||fill}"${sw}/>`);
+    const mode=r();
+    if(mode<.4){const gx=x+w*R(.12,.2),gw=w*R(.5,.7),gh=h*R(.45,.7);
+      o.push(`<rect x="${gx}" y="${G-gh}" width="${gw}" height="${gh}" fill="${c.glass}"${sw}/>`);
+      for(let k=1;k<4;k++)o.push(`<line x1="${gx+gw*k/4}" y1="${G-gh}" x2="${gx+gw*k/4}" y2="${G}" stroke="${c.mull||c.line||fill}" stroke-width="1.5"/>`);
+      if(h>150){const uy=y+16;o.push(`<rect x="${x+w*.18}" y="${uy}" width="${w*.64}" height="${h-gh-34}" fill="${c.glass}"${sw}/>`)}}
+    else if(mode<.7){const cols=Math.max(2,Math.floor(w/52)),rows=Math.max(1,Math.floor((h-30)/62));
+      for(let i=0;i<cols;i++)for(let j=0;j<rows;j++)o.push(`<rect x="${x+14+i*((w-28)/cols)+6}" y="${y+20+j*((h-34)/rows)}" width="${(w-28)/cols-12}" height="${(h-34)/rows-16}" fill="${c.glass}"${sw}/>`)}
+    else{for(let i=x+8;i<x+w-4;i+=9)o.push(`<line x1="${i}" y1="${y+6}" x2="${i}" y2="${G}" stroke="${c.batten||c.line||'#0002'}" stroke-width="1.2" opacity=".55"/>`);
+      o.push(`<rect x="${x+w*.55}" y="${y+h*.2}" width="${w*.3}" height="${h*.5}" fill="${c.glass}"${sw}/>`)}
+    if(c.accent&&m===n-1&&!opt.noaccent)o.push(`<rect x="${x+w*.06}" y="${G-h*.42}" width="${w*.12}" height="${h*.42}" fill="${c.accent}"/>`);
+    x+=w-R(10,40);
+  }
+  if(!opt.notrees)tree(Math.min(x+R(40,70),760),R(70,110));
+  o.push(`<rect x="0" y="${G}" width="${W}" height="${H-G}" fill="${c.ground||'none'}"/>`);
+  o.push(`<line x1="0" y1="${G}" x2="${W}" y2="${G}" stroke="${c.groundline||c.line||'#0003'}" stroke-width="${lw+.5}"/>`);
+  if(opt.dims){o.push(`<g fill="${c.line}" font-family="ui-monospace,monospace" font-size="11"><text x="20" y="${G+22}">FFL RL 34.200</text><text x="${W-150}" y="${G+22}">NORTH ELEVATION 1:100</text></g>`)}
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrative building elevation">${o.join('')}</svg>`;
+}
+document.querySelectorAll('[data-bld]').forEach(el=>{const p=JSON.parse(el.dataset.bld);el.innerHTML=idzBuilding(p.seed,window.IDZ_PAL[p.pal||'a'],p.opt)});
+</script>
+
+</body>
+</html>

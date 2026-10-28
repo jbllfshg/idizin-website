@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Idizin Full Bleed</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap">
+<style>
+/* Layout: image-led. Every section is a full-width band: a dusk render behind the headline, a solid signature-blue band, then a run of large tiles. */
+:root{
+  --blue:#1B4D9B;        /* Idizin signature blue (stand-in until the exact hex is confirmed) */
+  --blue-deep:#123566; --white:#FFFFFF; --ink:#0E1624; --stone:#EEF1F5; --mute:#5B6676;
+  --sans:"Archivo","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0}
+body{background:var(--white);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
+.in{max-width:1400px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media(min-width:800px){.in{padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px))}}
+a{color:inherit}
+.tag{background:var(--ink);color:var(--white);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:8px 16px}
+.hero{position:relative;color:var(--white);overflow:hidden;background:var(--blue-deep)}
+.hero .art{position:absolute;inset:0}
+.hero .art svg{width:100%;height:100%;display:block}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,22,36,.55) 0%,rgba(14,22,36,0) 40%,rgba(14,22,36,0) 55%,rgba(14,22,36,.75) 100%)}
+.hero .in{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between;min-height:min(720px,92svh);padding-block:24px 48px;gap:48px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.logo{font-weight:800;font-stretch:115%;font-size:26px;letter-spacing:-.02em;text-decoration:none}
+.logo span{display:inline-block;width:10px;height:10px;background:var(--white);margin-left:3px}
+nav{display:flex;gap:24px;flex-wrap:wrap;font-size:14px;font-weight:500}
+nav a{text-decoration:none;opacity:.85} nav a:hover,nav a:focus-visible{opacity:1;text-decoration:underline}
+h1{font-weight:850;font-stretch:72%;text-transform:uppercase;font-size:clamp(56px,11vw,168px);line-height:.86;letter-spacing:-.01em;margin:0;max-width:11ch}
+.hero-foot{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.hero-foot p{max-width:40ch;margin:0;font-size:18px}
+.btn{display:inline-block;background:var(--blue);color:var(--white);text-decoration:none;font-weight:700;padding:18px 28px;font-size:15px;letter-spacing:.02em}
+.btn:hover,.btn:focus-visible{background:var(--white);color:var(--blue);outline:none}
+.band{background:var(--blue);color:var(--white)}
+.band .in{padding-block:72px;display:grid;gap:40px}
+@media(min-width:900px){.band .in{grid-template-columns:repeat(4,1fr)}}
+.band h2{grid-column:1/-1;font-weight:800;font-stretch:85%;font-size:clamp(30px,4vw,52px);line-height:1;margin:0;max-width:20ch;text-wrap:balance}
+.step{border-top:1px solid rgba(255,255,255,.4);padding-top:16px;min-width:0}
+.step b{display:block;font-stretch:72%;font-weight:850;font-size:44px;line-height:1;text-transform:uppercase;margin-bottom:10px}
+.step p{margin:0;opacity:.85;font-size:15px}
+.tiles{display:grid;gap:4px;background:var(--white)}
+@media(min-width:760px){.tiles{grid-template-columns:2fr 1fr 1fr}.tiles .t:first-child{grid-row:span 2}}
+.t{position:relative;overflow:hidden;min-height:280px;color:var(--white);text-decoration:none;display:block;background:var(--blue-deep)}
+.t .art{position:absolute;inset:0}.t svg{width:100%;height:100%;display:block;transition:transform .6s ease}
+.t:hover svg{transform:scale(1.04)}
+.t::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(14,22,36,.7),rgba(14,22,36,0) 50%)}
+.t div.cap{position:absolute;left:20px;right:20px;bottom:18px;z-index:1}
+.t h3{margin:0;font-stretch:80%;font-weight:800;font-size:26px;text-transform:uppercase;line-height:1}
+.t small{opacity:.8;font-size:13px}
+.what .in{padding-block:80px;display:grid;gap:32px}
+@media(min-width:900px){.what .in{grid-template-columns:1fr 1fr;align-items:start}}
+.what h2{font-weight:800;font-stretch:85%;font-size:clamp(30px,4vw,52px);line-height:1;margin:0;color:var(--blue)}
+.what ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+.what li{border-bottom:1px solid var(--stone);padding:14px 0;font-weight:600;font-size:17px}
+.what .ap{grid-column:1/-1;display:flex;gap:10px;flex-wrap:wrap}
+.chip{border:2px solid var(--blue);color:var(--blue);padding:8px 14px;font-weight:700;font-size:14px}
+.cta{background:var(--ink);color:var(--white)}
+.cta .in{padding-block:72px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.cta h2{margin:0;font-stretch:72%;font-weight:850;text-transform:uppercase;font-size:clamp(40px,7vw,96px);line-height:.9}
+.cta .num{font-size:clamp(26px,3vw,40px);font-weight:700;color:var(--white);user-select:all}
+.cta .num small{display:block;font-size:14px;font-weight:400;opacity:.7}
+footer .in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:22px;font-size:13px;color:var(--mute)}
+</style>
+</head>
+<body>
+
+<div class="tag">Homepage concept 2 of 5 · Full bleed · drawings and project names are placeholders</div>
+<header class="hero">
+  <div class="art" data-bld='{"seed":12,"pal":"dusk","opt":{"h":600,"masses":3,"nosun":true}}'></div>
+  <div class="in">
+    <div class="bar"><a class="logo" href="#top">idizin<span></span></a>
+      <nav aria-label="Main"><a href="#process">Services</a><a href="#work">Projects</a><a href="#what">About</a><a href="#contact">Contact</a></nav></div>
+    <h1 id="top">Design. Approve. Build.</h1>
+    <div class="hero-foot"><p>Sydney building designers for granny flats, homes, duplexes and apartment buildings. We handle the drawings and the approvals.</p><a class="btn" href="#contact">Start your project →</a></div>
+  </div>
+</header>
+<main>
+<section class="band" id="process"><div class="in">
+  <h2>One team from the first meeting to the first slab.</h2>
+  <div class="step"><b>Consult</b><p>A detailed conversation about your ideas, your site and your budget.</p></div>
+  <div class="step"><b>Design</b><p>Original designs that suit the brief and the budget, drawn in full detail.</p></div>
+  <div class="step"><b>Approve</b><p>Complete DA, CC and CDC packages, with engineers and surveyors coordinated for you.</p></div>
+  <div class="step"><b>Construct</b><p>Introductions to builders and project managers we trust, at competitive prices.</p></div>
+</div></section>
+<section class="tiles" id="work" aria-label="Projects">
+  <a class="t" href="#work"><div class="art" data-bld='{"seed":31,"pal":"day","opt":{"h":700}}'></div><div class="cap"><h3>Residential flat building</h3><small>Placeholder project · Parramatta</small></div></a>
+  <a class="t" href="#work"><div class="art" data-bld='{"seed":5,"pal":"day"}'></div><div class="cap"><h3>Dual occupancy</h3><small>Placeholder project</small></div></a>
+  <a class="t" href="#work"><div class="art" data-bld='{"seed":58,"pal":"dusk"}'></div><div class="cap"><h3>Granny flat</h3><small>Placeholder project</small></div></a>
+  <a class="t" href="#work"><div class="art" data-bld='{"seed":77,"pal":"dusk"}'></div><div class="cap"><h3>New dwelling</h3><small>Placeholder project</small></div></a>
+  <a class="t" href="#work"><div class="art" data-bld='{"seed":90,"pal":"day"}'></div><div class="cap"><h3>Commercial</h3><small>Placeholder project</small></div></a>
+</section>
+<section class="what" id="what"><div class="in">
+  <h2>Residential, commercial and everything in between.</h2>
+  <ul><li>Granny flats</li><li>Dwellings</li><li>Dual occupancies</li><li>Multi-dwellings</li><li>Residential flat buildings</li><li>Commercial</li><li>Interior visualisations</li><li>Council compliance</li>
+    <li class="ap"><span class="chip">DA</span><span class="chip">CC</span><span class="chip">CDC</span></li></ul>
+</div></section>
+<section class="cta" id="contact"><div class="in">
+  <h2>Let's talk<br>about your site.</h2>
+  <div class="num">(02) 8677 9837<small>Book a meeting and tell us what you plan to develop.</small></div>
+</div></section>
+</main>
+<footer><div class="in"><span>© idizin Sydney Pty Ltd</span><span>Building design and approvals, Sydney NSW</span></div></footer>
+<script>window.IDZ_PAL={
+dusk:{sky1:'#123566',sky2:'#7E9CC6',sun:'#F1C27D',wall:'#E9EDF2',wall2:'#B9C5D4',roof:'#0E1624',glass:'#F6D9A1',mull:'#0E1624',tree:'#0F2547',trunk:'#0F2547',ground:'#0E1624',groundline:'#0E1624',batten:'#5B6676'},
+day:{sky1:'#7FA6D9',sky2:'#DCE7F4',wall:'#FFFFFF',wall2:'#D7DEE8',roof:'#0E1624',glass:'#1B4D9B',mull:'#DCE7F4',tree:'#3F6B4E',trunk:'#2E3A33',ground:'#C9D2C4',groundline:'#8C9787',batten:'#5B6676'}}</script>
+<script>
+/* Procedural building elevations: stand-ins until real project photos arrive. */
+function idzRng(seed){let s=seed>>>0||1;return()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296}}
+function idzBuilding(seed,c,opt){
+  opt=opt||{};const W=800,H=opt.h||520,G=H-70,r=idzRng(seed),R=(a,b)=>a+r()*(b-a);
+  const o=[];const line=c.line||'none',lw=opt.lw||1.5;
+  const sw=line==='none'?'':` stroke="${line}" stroke-width="${lw}"`;
+  if(c.sky1){o.push(`<defs><linearGradient id="sk${seed}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${c.sky1}"/><stop offset="1" stop-color="${c.sky2||c.sky1}"/></linearGradient></defs><rect width="${W}" height="${H}" fill="url(#sk${seed})"/>`)}
+  if(c.sun&&!opt.nosun)o.push(`<circle cx="${R(520,700)}" cy="${R(70,130)}" r="${R(28,46)}" fill="${c.sun}"/>`);
+  const tree=(x,s)=>{const t=c.tree||c.line;o.push(`<line x1="${x}" y1="${G}" x2="${x}" y2="${G-s*1.1}" stroke="${c.trunk||t}" stroke-width="3"/>`);
+    for(let i=0;i<5;i++)o.push(`<circle cx="${x+R(-s*.35,s*.35)}" cy="${G-s*1.15+R(-s*.25,s*.2)}" r="${R(s*.22,s*.36)}" fill="${c.tree||'none'}"${c.tree?'':sw} opacity="${c.tree?.9:1}"/>`)};
+  if(!opt.notrees)tree(R(40,110),R(90,130));
+  const n=opt.masses||(2+Math.floor(r()*2));let x=R(120,170);
+  for(let m=0;m<n;m++){
+    const w=R(150,240),h=R(110,190)+(m===1?R(30,80):0),y=G-h,top=m%2===0;
+    const fill=m%2?c.wall2||c.wall:c.wall;
+    o.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${fill}"${sw}/>`);
+    if(r()<.5){const lip=R(10,26);o.push(`<polygon points="${x-lip},${y} ${x+w+lip},${y-R(0,24)} ${x+w+lip},${y-R(0,6)-8} ${x-lip},${y-8}" fill="${c.roof||fill}"${sw}/>`)}
+    else o.push(`<rect x="${x-14}" y="${y-10}" width="${w+28}" height="10" fill="${c.roof||fill}"${sw}/>`);
+    const mode=r();
+    if(mode<.4){const gx=x+w*R(.12,.2),gw=w*R(.5,.7),gh=h*R(.45,.7);
+      o.push(`<rect x="${gx}" y="${G-gh}" width="${gw}" height="${gh}" fill="${c.glass}"${sw}/>`);
+      for(let k=1;k<4;k++)o.push(`<line x1="${gx+gw*k/4}" y1="${G-gh}" x2="${gx+gw*k/4}" y2="${G}" stroke="${c.mull||c.line||fill}" stroke-width="1.5"/>`);
+      if(h>150){const uy=y+16;o.push(`<rect x="${x+w*.18}" y="${uy}" width="${w*.64}" height="${h-gh-34}" fill="${c.glass}"${sw}/>`)}}
+    else if(mode<.7){const cols=Math.max(2,Math.floor(w/52)),rows=Math.max(1,Math.floor((h-30)/62));
+      for(let i=0;i<cols;i++)for(let j=0;j<rows;j++)o.push(`<rect x="${x+14+i*((w-28)/cols)+6}" y="${y+20+j*((h-34)/rows)}" width="${(w-28)/cols-12}" height="${(h-34)/rows-16}" fill="${c.glass}"${sw}/>`)}
+    else{for(let i=x+8;i<x+w-4;i+=9)o.push(`<line x1="${i}" y1="${y+6}" x2="${i}" y2="${G}" stroke="${c.batten||c.line||'#0002'}" stroke-width="1.2" opacity=".55"/>`);
+      o.push(`<rect x="${x+w*.55}" y="${y+h*.2}" width="${w*.3}" height="${h*.5}" fill="${c.glass}"${sw}/>`)}
+    if(c.accent&&m===n-1&&!opt.noaccent)o.push(`<rect x="${x+w*.06}" y="${G-h*.42}" width="${w*.12}" height="${h*.42}" fill="${c.accent}"/>`);
+    x+=w-R(10,40);
+  }
+  if(!opt.notrees)tree(Math.min(x+R(40,70),760),R(70,110));
+  o.push(`<rect x="0" y="${G}" width="${W}" height="${H-G}" fill="${c.ground||'none'}"/>`);
+  o.push(`<line x1="0" y1="${G}" x2="${W}" y2="${G}" stroke="${c.groundline||c.line||'#0003'}" stroke-width="${lw+.5}"/>`);
+  if(opt.dims){o.push(`<g fill="${c.line}" font-family="ui-monospace,monospace" font-size="11"><text x="20" y="${G+22}">FFL RL 34.200</text><text x="${W-150}" y="${G+22}">NORTH ELEVATION 1:100</text></g>`)}
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrative building elevation">${o.join('')}</svg>`;
+}
+document.querySelectorAll('[data-bld]').forEach(el=>{const p=JSON.parse(el.dataset.bld);el.innerHTML=idzBuilding(p.seed,window.IDZ_PAL[p.pal||'a'],p.opt)});
+</script>
+
+</body>
+</html>
